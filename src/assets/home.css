@@ -30,7 +30,7 @@
   align-items: center;
   justify-content: center;
   margin: 10px;
-  padding: 20px;
+  padding: 40px;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
 }
@@ -77,7 +77,13 @@
 
 /*Image Section*/
 .student-image {
-  width: 200px;
+  margin-top: 10px;
+  width: 150px;
+  transition: transform 0.3s ease;
+}
+
+.student-image.hovered {
+  transform: scale(1.1); 
 }
 
 /*Contact Section*/
@@ -217,8 +223,8 @@
 /* Count Circle */
 .count-circle {
   position: fixed;
-  bottom: 20px; /* Adjust as per your design */
-  left: 20px; /* Adjust as per your design */
+  top: 70px; /* Adjust as per your design */
+  right: 10px; /* Adjust as per your design */
   width: 50px; /* Diameter of the circle */
   height: 50px; /* Diameter of the circle */
   background-color: white; /* Green color */
@@ -272,19 +278,54 @@
 }
 
 .modal-buttons button:first-child {
-  background-color: #4caf50; /* Green color for Yes button */
+  background-color: #4caf50; 
   color: white;
 }
 
 .modal-buttons button:first-child:hover {
-  background-color: #45a049; /* Darker green on hover */
+  background-color: #45a049; 
 }
 
 .modal-buttons button:last-child {
-  background-color: #f44336; /* Red color for No button */
+  background-color: #f44336; 
   color: white;
 }
 
 .modal-buttons button:last-child:hover {
-  background-color: #f22e17; /* Darker red on hover */
+  background-color: #f22e17; 
+}
+
+/*Work Experience Section*/
+.work-experience-list {
+  padding-top: 20px;
+  border-left: 2px solid grey; 
+  padding-left: 20px; 
+}
+
+.job-details {
+  position: relative;
+  padding-left: 40px; 
+  margin-bottom: 20px;
+}
+
+.job-details:before {
+  content: "";
+  position: absolute;
+  left: -10px; 
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: grey;
+  border: 2px solid #fff; 
+}
+
+.job-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.job-period {
+  font-style: italic;
+  color: #777;
 }

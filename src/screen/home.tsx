@@ -17,6 +17,7 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
     return cachedCount ? parseInt(cachedCount) : 0;
   });
   const [showResetModal, setShowResetModal] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const myInformation = {
     imagePath: studentImage,
@@ -68,11 +69,11 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
 
   const handleResetConfirm = () => {
     setTotalCount(0);
-    setShowResetModal(false); 
+    setShowResetModal(false);
   };
 
   const handleResetCancel = () => {
-    setShowResetModal(false); 
+    setShowResetModal(false);
   };
 
   return (
@@ -100,8 +101,11 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
           <img
             src={myInformation.imagePath}
             alt="Student"
-            className="student-image"
+            className={`student-image ${isHovered ? "hovered" : ""}`}
             onClick={handleClick}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            draggable="false"
           />
           {plusOneList.map((plusOne) => (
             <div
@@ -117,21 +121,23 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
       <div className="row2">
         <div className={`container2 ${theme}`}>
           <h1 className="header1">Work Experiences</h1>
-          {myInformation.workExperiences.map((job, index) => (
-            <div key={index}>
-              <p>{job.name}</p>
-              <p>Position: {job.position}</p>
-              <p>{job.period}</p>
-            </div>
-          ))}
+          <div className="work-experience-list">
+            {myInformation.workExperiences.map((job, index) => (
+              <div key={index} className="job-details">
+                <p className="job-name">{job.name}</p>
+                <p className="job-position">Position: {job.position}</p>
+                <p className="job-period">{job.period}</p>
+              </div>
+            ))}
+          </div>
         </div>
+
         <div className={`container2 ${theme}`}>
           <h1 className="header1">Objective</h1>
           <p className={`objective-text ${theme}`}>{myInformation.objective}</p>
         </div>
       </div>
-         {/* Count Circle */}
-         <div
+      <div
         className={`count-circle ${theme}`}
         onClick={() => setShowResetModal(true)}
       >

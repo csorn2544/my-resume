@@ -22,8 +22,8 @@
 .toggle-btn {
   position: fixed;
   top: 10px;
-  right: 10px;
-  padding: 8px;
+  right: 11px;
+  padding: 10px;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -35,7 +35,7 @@
 }
 
 .toggle-btn svg {
-  font-size: 24px;
+  font-size: 30px;
   color: #333;
 }
 
