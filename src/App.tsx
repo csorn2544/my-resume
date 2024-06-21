@@ -11,7 +11,9 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ darkMode }) => {
   const theme = darkMode ? "dark" : "light";
-  const [plusOneList, setPlusOneList] = useState<{ id: number; x: number; y: number }[]>([]);
+  const [plusOneList, setPlusOneList] = useState<
+    { id: number; x: number; y: number }[]
+  >([]);
   const [nextId, setNextId] = useState(0);
   const [totalCount, setTotalCount] = useState(() => {
     const cachedCount = localStorage.getItem("plusOneCount");
@@ -55,7 +57,9 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
     ],
   };
 
-  const handleClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+  const handleClick = (
+    event: React.MouseEvent<HTMLImageElement, MouseEvent>
+  ) => {
     const { clientX, clientY } = event;
     const id = nextId;
     setNextId(nextId + 1);
@@ -136,7 +140,10 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
           <p className={`objective-text ${theme}`}>{myInformation.objective}</p>
         </div>
       </div>
-      <div className={`count-circle ${theme}`} onClick={() => setShowResetModal(true)}>
+      <div
+        className={`count-circle ${theme}`}
+        onClick={() => setShowResetModal(true)}
+      >
         <p>{totalCount}</p>
       </div>
 
@@ -165,16 +172,12 @@ function App() {
   const theme = darkMode ? "dark" : "light";
 
   return (
-    <Router>
       <div className={`body ${theme}`}>
         <button onClick={toggleDarkMode} className="toggle-btn">
           <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
         </button>
-        <Routes>
-          <Route path="/" element={<Home darkMode={darkMode} />} />
-        </Routes>
+        <Home darkMode={darkMode} />
       </div>
-    </Router>
   );
 }
 
