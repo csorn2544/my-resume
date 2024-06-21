@@ -57,7 +57,6 @@
 }
 
 /*Objective Section*/
-
 .objective-text {
   font-size: 18px;
   line-height: 1.6;
@@ -81,7 +80,6 @@
 /*Image Section*/
 .student-image {
   width: 200px;
-  margin-top: 40px;
 }
 
 /*Contact Section*/
@@ -112,6 +110,17 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
+.dark .contact-button {
+  border-color: #ccc; 
+  color: #ccc; 
+  background-color: #333; 
+}
+
+.dark .contact-button:hover {
+  background-color: #555; 
+  box-shadow: 0 0 20px rgba(124, 124, 124, 0.4);
+}
+
 /*Responsive*/
 @media (min-width: 600px) {
   .header1 {
@@ -120,16 +129,6 @@
   .contact {
     font-size: 1em;
   }
-}
-
-/* Light mode styles */
-.home.light {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #ffffff; /* Light mode background color */
-  color: #333; /* Light mode text color */
 }
 
 .container1.light {
@@ -150,21 +149,6 @@
 
 .objective-text.light {
   color: #3a3a3a;
-}
-
-.contact-button.light {
-  border: 2px solid #333;
-  color: #333;
-}
-
-/* Dark mode styles */
-.home.dark {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #333333; /* Dark mode background color */
-  color: #ffffff; /* Dark mode text color */
 }
 
 .container1.dark {
@@ -190,45 +174,4 @@
 .contact-button.dark {
   border: 2px solid #ffffff;
   color: #ffffff;
-}
-
-/* Toggle switch styles */
-.toggle-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-}
-
-.toggle-input {
-  display: none;
-}
-
-.toggle-label {
-  display: block;
-  width: 100px;
-  height: 50px;
-  background-color: #ccc;
-  border-radius: 15px;
-  position: relative;
-  cursor: pointer;
-}
-
-.toggle-label:before {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background-color: white;
-  transition: transform 0.3s ease;
-}
-
-.toggle-input:checked + .toggle-label {
-  background-color: #4cd137; /* Green color for toggle switch when checked */
-}
-
-.toggle-input:checked + .toggle-label:before {
-  transform: translateX(30px);
 }

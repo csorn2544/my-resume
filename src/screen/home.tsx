@@ -1,15 +1,12 @@
-import { useState } from "react";
 import "../assets/home.css";
 import studentImage from "../assets/images/ไฟล์รูปนิสิต.jpg";
 
-const Home = () => {
-  const [darkMode, setDarkMode] = useState(false); // State for dark mode
+interface HomeProps {
+  darkMode: boolean;
+}
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
-  const theme = darkMode ? "dark" : "light"; // Determine theme based on darkMode state
+const Home: React.FC<HomeProps> = ({ darkMode }) => {
+  const theme = darkMode ? "dark" : "light";
 
   const myInformation = {
     imagePath: studentImage,
@@ -67,7 +64,11 @@ const Home = () => {
             ))}
           </div>
         </div>
-        <img src={myInformation.imagePath} alt="Student" className="student-image" />
+        <img
+          src={myInformation.imagePath}
+          alt="Student"
+          className="student-image"
+        />
       </div>
       <div className="row2">
         <div className={`container2 ${theme}`}>
@@ -82,20 +83,8 @@ const Home = () => {
         </div>
         <div className={`container2 ${theme}`}>
           <h1 className="header1">Objective</h1>
-          <p className="objective-text">{myInformation.objective}</p>
+          <p className={`objective-text ${theme}`}>{myInformation.objective}</p>
         </div>
-      </div>
-      <div className="toggle-container">
-        <input
-          type="checkbox"
-          id="darkModeToggle"
-          className="toggle-input"
-          checked={darkMode}
-          onChange={toggleDarkMode}
-        />
-        <label htmlFor="darkModeToggle" className="toggle-label">
-          Toggle Dark Mode
-        </label>
       </div>
     </div>
   );
