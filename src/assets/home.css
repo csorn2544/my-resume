@@ -216,7 +216,7 @@
 
 /* Count Circle */
 .count-circle {
-  position: absolute;
+  position: fixed;
   bottom: 20px; /* Adjust as per your design */
   left: 20px; /* Adjust as per your design */
   width: 50px; /* Diameter of the circle */

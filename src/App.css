@@ -2,7 +2,6 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
 }
 
 .body {
@@ -11,9 +10,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background-color: white;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
+  min-height: 100vh; /* Ensures body takes full viewport height */
 }
 
 .body.dark {
@@ -21,14 +20,14 @@
 }
 
 .toggle-btn {
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 10px;
   padding: 8px;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  transition: color 0.3s ease; 
+  transition: color 0.3s ease;
 }
 
 .toggle-btn:focus {
@@ -36,10 +35,10 @@
 }
 
 .toggle-btn svg {
-  font-size: 24px; 
+  font-size: 24px;
   color: #333;
 }
 
 .toggle-btn:hover svg {
-  color: #555; 
+  color: #555;
 }
