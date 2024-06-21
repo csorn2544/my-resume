@@ -19,9 +19,12 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
   });
   const [showResetModal, setShowResetModal] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
 
   const myInformation = {
-    imagePath: "https://raw.githubusercontent.com/csorn2544/my-resume/main/src/assets/images/%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B8%99%E0%B8%B4%E0%B8%AA%E0%B8%B4%E0%B8%95.jpg",
+    imagePath:
+      "https://raw.githubusercontent.com/csorn2544/my-resume/main/src/assets/images/%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B8%99%E0%B8%B4%E0%B8%AA%E0%B8%B4%E0%B8%95.jpg",
     name: "Chanisorn",
     surname: "Ueasomsaksakul",
     contact: [
@@ -32,6 +35,10 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
       {
         name: "GitHub",
         url: "https://github.com/csorn2544",
+      },
+      {
+        name: "Linkedin",
+        url: "https://www.linkedin.com/in/chanisorn-ueasomsaksakul-329351220/",
       },
     ],
     objective:
@@ -77,11 +84,54 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
     setShowResetModal(false);
   };
 
+  const handleMouseDown = (
+    event: React.MouseEvent<HTMLHeadingElement, MouseEvent>
+  ) => {
+    setIsDragging(true);
+    const { clientX, clientY } = event;
+    setStartPosition({ x: clientX, y: clientY });
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    const headerElement = document.querySelector(".header1") as HTMLElement;
+    headerElement.style.transform = "none";
+  };
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLHeadingElement>) => {
+    if (!isDragging) return;
+  
+    const { clientX, clientY } = event;
+  
+    const container = document.querySelector(".container1") as HTMLElement;
+    const containerWidth = container.clientWidth;
+    const containerHeight = container.clientHeight;
+  
+    const maxX = containerWidth  - event.currentTarget.offsetWidth;
+    const maxY = containerHeight * 0.6 - event.currentTarget.offsetHeight;
+  
+    let deltaX = clientX - startPosition.x;
+    let deltaY = clientY - startPosition.y;
+  
+    deltaX = Math.max(0, Math.min(deltaX, maxX));
+    deltaY = Math.max(0, Math.min(deltaY, maxY));
+  
+    const headerElement = event.currentTarget as HTMLElement;
+    headerElement.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+  };
+  
+
   return (
     <div className={`home ${theme}`}>
       <div className="row1">
         <div className={`container1 ${theme}`}>
-          <h1 className="header1">
+          <h1
+            className={`header1 ${isDragging ? "grabbing" : ""}`}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseUp}
+          >
             {myInformation.name} {myInformation.surname}
           </h1>
           <div className="contact-buttons">
@@ -121,7 +171,7 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
       </div>
       <div className="row2">
         <div className={`container2 ${theme}`}>
-          <h1 className="header1">Work Experiences</h1>
+          <h1 className="header2">Work Experiences</h1>
           <div className="work-experience-list">
             {myInformation.workExperiences.map((job, index) => (
               <div key={index} className="job-details">
@@ -134,7 +184,7 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
         </div>
 
         <div className={`container2 ${theme}`}>
-          <h1 className="header1">Objective</h1>
+          <h1 className="header2">Objective</h1>
           <p className={`objective-text ${theme}`}>{myInformation.objective}</p>
         </div>
       </div>
@@ -170,12 +220,12 @@ function App() {
   const theme = darkMode ? "dark" : "light";
 
   return (
-      <div className={`body ${theme}`}>
-        <button onClick={toggleDarkMode} className="toggle-btn">
-          <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
-        </button>
-        <Home darkMode={darkMode} />
-      </div>
+    <div className={`body ${theme}`}>
+      <button onClick={toggleDarkMode} className="toggle-btn">
+        <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
+      </button>
+      <Home darkMode={darkMode} />
+    </div>
   );
 }
 

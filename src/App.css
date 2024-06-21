@@ -53,8 +53,8 @@
 
 /*Container*/
 .container1 {
-  width: 70%;
-  max-width: 573px;
+  width: 80%;
+  max-width: 500px;
   height: auto;
   background-color: #f0f3f9;
   border-radius: 20px;
@@ -94,6 +94,19 @@
 
 /*Header*/
 .header1 {
+  font-family: "Inter", sans-serif;
+  font-weight: 800;
+  font-size: 3.5vw;
+  user-select: none; 
+  cursor: grab; 
+  transition: transform 0.3s ease; 
+}
+
+.header1.grabbing {
+  cursor: grabbing; 
+}
+
+.header2 {
   font-family: "Inter", sans-serif;
   font-weight: 800;
   font-size: 3.5vw;
@@ -172,7 +185,7 @@
 
 /*Responsive*/
 @media (min-width: 600px) {
-  .header1 {
+  .header1,.header2 {
     font-size: 2.5em;
   }
   .contact {
