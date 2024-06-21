@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../assets/home.css";
 import studentImage from "../assets/images/ไฟล์รูปนิสิต.jpg";
 
@@ -7,6 +8,15 @@ interface HomeProps {
 
 const Home: React.FC<HomeProps> = ({ darkMode }) => {
   const theme = darkMode ? "dark" : "light";
+  const [plusOneList, setPlusOneList] = useState<
+    { id: number; x: number; y: number }[]
+  >([]);
+  const [nextId, setNextId] = useState(0);
+  const [totalCount, setTotalCount] = useState(() => {
+    const cachedCount = localStorage.getItem("plusOneCount");
+    return cachedCount ? parseInt(cachedCount) : 0;
+  });
+  const [showResetModal, setShowResetModal] = useState(false);
 
   const myInformation = {
     imagePath: studentImage,
@@ -43,6 +53,28 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
     ],
   };
 
+  const handleClick = (
+    event: React.MouseEvent<HTMLImageElement, MouseEvent>
+  ) => {
+    const { clientX, clientY } = event;
+    const id = nextId;
+    setNextId(nextId + 1);
+    setPlusOneList([...plusOneList, { id, x: clientX, y: clientY }]);
+    setTotalCount((prevCount) => prevCount + 1);
+    setTimeout(() => {
+      setPlusOneList((prevList) => prevList.filter((item) => item.id !== id));
+    }, 1000);
+  };
+
+  const handleResetConfirm = () => {
+    setTotalCount(0);
+    setShowResetModal(false); 
+  };
+
+  const handleResetCancel = () => {
+    setShowResetModal(false); 
+  };
+
   return (
     <div className={`home ${theme}`}>
       <div className="row1">
@@ -64,11 +96,23 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
             ))}
           </div>
         </div>
-        <img
-          src={myInformation.imagePath}
-          alt="Student"
-          className="student-image"
-        />
+        <div className="image-container">
+          <img
+            src={myInformation.imagePath}
+            alt="Student"
+            className="student-image"
+            onClick={handleClick}
+          />
+          {plusOneList.map((plusOne) => (
+            <div
+              key={plusOne.id}
+              className="plus-one"
+              style={{ left: `${plusOne.x}px`, top: `${plusOne.y}px` }}
+            >
+              +1
+            </div>
+          ))}
+        </div>
       </div>
       <div className="row2">
         <div className={`container2 ${theme}`}>
@@ -86,6 +130,25 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
           <p className={`objective-text ${theme}`}>{myInformation.objective}</p>
         </div>
       </div>
+         {/* Count Circle */}
+         <div
+        className={`count-circle ${theme}`}
+        onClick={() => setShowResetModal(true)}
+      >
+        <p>{totalCount}</p>
+      </div>
+
+      {showResetModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <p>Reset count?</p>
+            <div className="modal-buttons">
+              <button onClick={handleResetConfirm}>Yes</button>
+              <button onClick={handleResetCancel}>No</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
