@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
-import studentImage from "./assets/images/ไฟล์รูปนิสิต.jpg";
 
 interface HomeProps {
   darkMode: boolean;
@@ -22,7 +21,7 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const myInformation = {
-    imagePath: studentImage,
+    imagePath: "./assets/ไฟล์รูปนิสิต.jpg",
     name: "Chanisorn",
     surname: "Ueasomsaksakul",
     contact: [
