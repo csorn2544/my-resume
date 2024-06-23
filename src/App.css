@@ -10,9 +10,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: rgb(212, 212, 212);
   transition: background-color 0.3s ease;
-  min-height: 100vh; /* Ensures body takes full viewport height */
+  min-height: 100vh;
 }
 
 .body.dark {
@@ -97,13 +97,13 @@
   font-family: "Inter", sans-serif;
   font-weight: 800;
   font-size: 3.5vw;
-  user-select: none; 
-  cursor: grab; 
-  transition: transform 0.3s ease; 
+  user-select: none;
+  cursor: grab;
+  transition: transform 0.3s ease;
 }
 
 .header1.grabbing {
-  cursor: grabbing; 
+  cursor: grabbing;
 }
 
 .header2 {
@@ -141,7 +141,7 @@
 }
 
 .student-image.hovered {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 /*Contact Section*/
@@ -172,6 +172,11 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
+.contact-icon {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
 .dark .contact-button {
   border-color: #ccc;
   color: #ccc;
@@ -185,7 +190,8 @@
 
 /*Responsive*/
 @media (min-width: 600px) {
-  .header1,.header2 {
+  .header1,
+  .header2 {
     font-size: 2.5em;
   }
   .contact {
@@ -197,12 +203,12 @@
   }
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
   .container1 {
     width: 95%;
-    max-width: none; 
+    max-width: none;
   }
-  
+
   .container2 {
     width: 100%;
     max-width: none;
@@ -336,46 +342,46 @@
 }
 
 .modal-buttons button:first-child {
-  background-color: #4caf50; 
+  background-color: #4caf50;
   color: white;
 }
 
 .modal-buttons button:first-child:hover {
-  background-color: #45a049; 
+  background-color: #45a049;
 }
 
 .modal-buttons button:last-child {
-  background-color: #f44336; 
+  background-color: #f44336;
   color: white;
 }
 
 .modal-buttons button:last-child:hover {
-  background-color: #f22e17; 
+  background-color: #f22e17;
 }
 
 /*Work Experience Section*/
 .work-experience-list {
   padding-top: 20px;
-  border-left: 2px solid grey; 
-  padding-left: 20px; 
+  border-left: 2px solid grey;
+  padding-left: 20px;
 }
 
 .job-details {
   position: relative;
-  padding-left: 40px; 
+  padding-left: 40px;
   margin-bottom: 20px;
 }
 
 .job-details:before {
   content: "";
   position: absolute;
-  left: -10px; 
+  left: -10px;
   top: 0;
   width: 20px;
   height: 20px;
   border-radius: 50%;
   background-color: grey;
-  border: 2px solid #fff; 
+  border: 2px solid #fff;
 }
 
 .job-name {
@@ -388,3 +394,31 @@
   color: #777;
 }
 
+/*Footer*/
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 2px 0;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.footer .tech-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px; /* Add some space between the lines */
+}
+
+.footer .tech-icon {
+  width: 24px;
+  height: 24px;
+}

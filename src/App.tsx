@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+import { faSun, faMoon, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faInstagram,
+  faGithub,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
+
 import "./App.css";
 
 interface HomeProps {
@@ -30,14 +36,17 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
     contact: [
       {
         name: "Instagram",
+        icon: faInstagram,
         url: "https://www.instagram.com/csorn2544",
       },
       {
         name: "GitHub",
+        icon: faGithub,
         url: "https://github.com/csorn2544",
       },
       {
         name: "Linkedin",
+        icon: faLinkedin,
         url: "https://www.linkedin.com/in/chanisorn-ueasomsaksakul-329351220/",
       },
     ],
@@ -67,9 +76,17 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
   ) => {
     const { clientX, clientY } = event;
     const id = nextId;
+
     setNextId(nextId + 1);
-    setPlusOneList([...plusOneList, { id, x: clientX, y: clientY }]);
+    setPlusOneList((prevList) => {
+      const newList = [...prevList, { id, x: clientX, y: clientY }];
+      if (newList.length > 100) {
+        newList.shift(); // Remove the oldest element if length exceeds 100
+      }
+      return newList;
+    });
     setTotalCount((prevCount) => prevCount + 1);
+
     setTimeout(() => {
       setPlusOneList((prevList) => prevList.filter((item) => item.id !== id));
     }, 1000);
@@ -100,26 +117,25 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
 
   const handleMouseMove = (event: React.MouseEvent<HTMLHeadingElement>) => {
     if (!isDragging) return;
-  
+
     const { clientX, clientY } = event;
-  
+
     const container = document.querySelector(".container1") as HTMLElement;
     const containerWidth = container.clientWidth;
     const containerHeight = container.clientHeight;
-  
-    const maxX = containerWidth  - event.currentTarget.offsetWidth;
+
+    const maxX = containerWidth - event.currentTarget.offsetWidth;
     const maxY = containerHeight * 0.6 - event.currentTarget.offsetHeight;
-  
+
     let deltaX = clientX - startPosition.x;
     let deltaY = clientY - startPosition.y;
-  
+
     deltaX = Math.max(0, Math.min(deltaX, maxX));
     deltaY = Math.max(0, Math.min(deltaY, maxY));
-  
+
     const headerElement = event.currentTarget as HTMLElement;
     headerElement.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
   };
-  
 
   return (
     <div className={`home ${theme}`}>
@@ -143,6 +159,7 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <FontAwesomeIcon icon={contact.icon} className="contact-icon" />{" "}
                 {contact.name}
               </a>
             ))}
@@ -164,7 +181,7 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
               className="plus-one"
               style={{ left: `${plusOne.x}px`, top: `${plusOne.y}px` }}
             >
-              +1
+              <FontAwesomeIcon icon={faThumbsUp} />
             </div>
           ))}
         </div>
@@ -206,6 +223,22 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
           </div>
         </div>
       )}
+      <footer className={`footer ${theme}`}>
+        <p>Powered By GitHub Pages</p>
+        <div className="tech-icons">
+          <img
+            src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png"
+            alt="Vite logo"
+            className="tech-icon"
+          />
+          +
+          <img
+            src="https://github-production-user-asset-6210df.s3.amazonaws.com/62091613/261395532-b40892ef-efb8-4b0e-a6b5-d1cfc2f3fc35.png"
+            alt="React logo"
+            className="tech-icon"
+          />
+        </div>
+      </footer>
     </div>
   );
 };
