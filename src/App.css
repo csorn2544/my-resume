@@ -19,30 +19,6 @@
   background-color: #222;
 }
 
-.toggle-btn {
-  position: fixed;
-  top: 10px;
-  right: 11px;
-  padding: 10px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.toggle-btn:focus {
-  outline: none;
-}
-
-.toggle-btn svg {
-  font-size: 30px;
-  color: #333;
-}
-
-.toggle-btn:hover svg {
-  color: #555;
-}
-
 /*Body*/
 .home {
   display: flex;
@@ -141,7 +117,9 @@
   object-fit: cover;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   cursor: pointer;
 }
 
@@ -169,7 +147,9 @@
   text-decoration: none;
   color: #333;
   font-weight: bold;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -223,12 +203,12 @@
     width: 100%;
     max-width: none;
   }
-  
+
   .profile-image {
     width: 180px;
     height: 180px;
   }
-  
+
   .row1 {
     flex-direction: column;
     align-items: center;
@@ -305,22 +285,6 @@
 }
 
 /* Count Circle */
-.count-circle {
-  position: fixed;
-  top: 70px; /* Adjust as per your design */
-  right: 10px; /* Adjust as per your design */
-  width: 50px; /* Diameter of the circle */
-  height: 50px; /* Diameter of the circle */
-  background-color: white; /* Green color */
-  border-radius: 50%; /* Ensures it's circular */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  color: black;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
 .dark .count-circle {
   color: white;
   background-color: #333; /* Dark background color */
@@ -331,12 +295,14 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  width: 100vw;
+  height: 100vh;
+  background: rgba(30, 34, 40, 0.45); /* Softer overlay */
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
 }
 
 .modal-content {
@@ -435,10 +401,193 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  margin-top: 5px; /* Add some space between the lines */
+  margin-top: 5px;
 }
 
 .footer .tech-icon {
   width: 24px;
   height: 24px;
+}
+
+.top-right-controls {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 200;
+  align-items: flex-end;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  padding: 16px 12px;
+  transition: background 0.3s;
+}
+
+.body.dark .top-right-controls {
+  background: rgba(35, 39, 47, 0.92);
+}
+
+.top-right-controls button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-right-controls button svg {
+  color: #23272f; /* dark icon in light mode */
+}
+
+/* White icon in dark mode */
+.body.dark .top-right-controls button svg {
+  color: #fff;
+}
+.body.dark .top-right-controls button:hover svg,
+.body.dark .top-right-controls button:focus svg {
+  color: #fff; /* white for dark mode */
+}
+
+.count-circle {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.1rem;
+  background: #f5f6fa;
+  color: #23272f;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.count-circle.dark {
+  background: #23272f;
+  color: #fff;
+}
+
+.count-circle:hover,
+.count-circle:focus {
+  background: #d3d3d3;
+}
+
+.count-circle.dark:hover,
+.count-circle.dark:focus {
+  background: #353b48;
+}
+/* Side navbar container */
+.side-navbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 270px;
+  background: #fff;
+  box-shadow: -2px 0 24px rgba(0, 0, 0, 0.12);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px 24px 24px;
+  animation: slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.body.dark .side-navbar {
+  background: #23272f;
+  color: #fff;
+}
+
+/* Navbar links container */
+.navbar-links-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 32px;
+  width: 100%;
+}
+
+/* Individual nav links */
+.nav-link {
+  color: #23272f;
+  text-decoration: none;
+  font-size: 1.15rem;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 8px;
+  transition:
+    background 0.2s,
+    color 0.2s;
+  letter-spacing: 0.01em;
+  display: block;
+}
+
+.nav-link.active,
+.nav-link:hover,
+.nav-link:focus {
+  background: #e0e7ef;
+  color: #000000;
+}
+
+.navbar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(30, 34, 40, 0.45);
+  z-index: 299;
+  backdrop-filter: blur(2px);
+  transition: opacity 0.2s;
+}
+
+.body.dark .nav-link {
+  color: #fff;
+}
+
+.body.dark .nav-link.active,
+.body.dark .nav-link:hover,
+.body.dark .nav-link:focus {
+  background: #353b48;
+  color: #ffffff;
+}
+
+.close-navbar {
+  background: none;
+  border: none;
+  color: #23272f;
+  font-size: 1.7rem;
+  align-self: flex-end;
+  cursor: pointer;
+  margin-bottom: 32px;
+  transition:
+    color 0.2s,
+    background 0.2s;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.close-navbar:hover,
+.close-navbar:focus {
+  background: #e0e7ef;
+}
+
+.body.dark .close-navbar {
+  color: #fff;
+}
+
+.body.dark .close-navbar:hover,
+.body.dark .close-navbar:focus {
+  background: #353b48;
 }
