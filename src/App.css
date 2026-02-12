@@ -13,6 +13,7 @@
   background-color: rgb(212, 212, 212);
   transition: background-color 0.3s ease;
   min-height: 100vh;
+  user-select: none;
 }
 
 .body.dark {
@@ -35,7 +36,7 @@
   background-color: #f0f3f9;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin: 10px;
+  margin: 30px;
   padding: 20px;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;

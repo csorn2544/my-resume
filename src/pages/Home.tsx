@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import {
   faInstagram,
   faGithub,
@@ -16,21 +15,35 @@ interface HomeProps {
   handleResetCancel: () => void;
 }
 
-const Home: React.FC<HomeProps> = ({
-  darkMode,
-  setTotalCount,
-}) => {
+const Home: React.FC<HomeProps> = ({ darkMode, setTotalCount }) => {
   const theme = darkMode ? "light" : "dark";
   const [isHovered, setIsHovered] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
   const [plusOneList, setPlusOneList] = useState<
-    { id: number; x: number; y: number }[]
+    {
+      emoji: ReactNode;
+      id: number;
+      x: number;
+      y: number;
+    }[]
   >([]);
   const [nextId, setNextId] = useState(0);
-
+  const emojiList = [
+    "👍",
+    "🎉",
+    "🔥",
+    "💯",
+    "🚀",
+    "😄",
+    "👏",
+    "✨",
+    "🥳",
+    "😎",
+  ];
   const myInformation = {
-    imagePath: "https://avatars.githubusercontent.com/u/78349946?s=400&u=7fd2e42534069c8c32f8d3514184983ba6491e1b&v=4",
+    imagePath:
+      "https://avatars.githubusercontent.com/u/78349946?s=400&u=7fd2e42534069c8c32f8d3514184983ba6491e1b&v=4",
     name: "Chanisorn",
     surname: "Ueasomsaksakul",
     contact: [
@@ -72,19 +85,22 @@ const Home: React.FC<HomeProps> = ({
     ],
   };
 
-
   // handleResetConfirm and handleResetCancel are now props
   const handleClick = (
     event: React.MouseEvent<HTMLImageElement, MouseEvent>,
   ) => {
     const { clientX, clientY } = event;
     const id = nextId;
+    const randomEmoji = emojiList[Math.floor(Math.random() * emojiList.length)];
 
     setNextId(nextId + 1);
     setPlusOneList((prevList) => {
-      const newList = [...prevList, { id, x: clientX, y: clientY }];
+      const newList = [
+        ...prevList,
+        { id, x: clientX, y: clientY, emoji: randomEmoji },
+      ];
       if (newList.length > 100) {
-        newList.shift(); // Remove the oldest element if length exceeds 100
+        newList.shift();
       }
       return newList;
     });
@@ -152,6 +168,7 @@ const Home: React.FC<HomeProps> = ({
                 className={`contact-button ${theme}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                draggable="false"
               >
                 <FontAwesomeIcon icon={contact.icon} className="contact-icon" />{" "}
                 {contact.name}
@@ -175,7 +192,7 @@ const Home: React.FC<HomeProps> = ({
               className="plus-one"
               style={{ left: `${plusOne.x}px`, top: `${plusOne.y}px` }}
             >
-              <FontAwesomeIcon icon={faThumbsUp} />
+              {plusOne.emoji}
             </div>
           ))}
         </div>
@@ -219,23 +236,6 @@ const Home: React.FC<HomeProps> = ({
           <p className={`objective-text ${theme}`}>{myInformation.objective}</p>
         </div>
       </div>
-
-      <footer className={`footer ${theme}`}>
-        <p>Powered By GitHub Pages</p>
-        <div className="tech-icons">
-          <img
-            src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png"
-            alt="Vite logo"
-            className="tech-icon"
-          />
-          +
-          <img
-            src="https://github-production-user-asset-6210df.s3.amazonaws.com/62091613/261395532-b40892ef-efb8-4b0e-a6b5-d1cfc2f3fc35.png"
-            alt="React logo"
-            className="tech-icon"
-          />
-        </div>
-      </footer>
     </div>
   );
 };

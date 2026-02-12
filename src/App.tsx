@@ -126,6 +126,22 @@ function App() {
         />
         <Route path="/work-in-progress" element={<WorkInProgress />} />
       </Routes>
+      <footer className={`footer ${theme}`}>
+        <p>Powered By GitHub Pages</p>
+        <div className="tech-icons">
+          <img
+            src="https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png"
+            alt="Vite logo"
+            className="tech-icon"
+          />
+          +
+          <img
+            src="https://github-production-user-asset-6210df.s3.amazonaws.com/62091613/261395532-b40892ef-efb8-4b0e-a6b5-d1cfc2f3fc35.png"
+            alt="React logo"
+            className="tech-icon"
+          />
+        </div>
+      </footer>
     </div>
   );
 }
