@@ -29,7 +29,7 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
   const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
 
   const myInformation = {
-    imagePath: import.meta.env.VITE_IMG_LINK,
+    imagePath: "https://avatars.githubusercontent.com/u/78349946?s=400&u=7fd2e42534069c8c32f8d3514184983ba6491e1b&v=4",
     name: "Chanisorn",
     surname: "Ueasomsaksakul",
     contact: [
