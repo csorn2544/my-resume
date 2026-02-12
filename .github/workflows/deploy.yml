@@ -23,7 +23,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Print image link
-        run: echo "Image link is ${{ vars.VITE_IMG_LINK }}"
+        run: echo VITE_IMG_LINK="${{ vars.VITE_IMG_LINK }}" > .env
 
       - name: Build project
         run: npm run build
