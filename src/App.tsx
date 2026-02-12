@@ -112,7 +112,7 @@ function App() {
       )}
       {/* Main content */}
       <Routes>
-        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="/my-resume" element={<Navigate to="/home" replace />} />
         <Route
           path="/home"
           element={
