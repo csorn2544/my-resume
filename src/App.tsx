@@ -10,7 +10,7 @@ import {
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import WorkInProgress from "./pages/WorkInProgress";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
@@ -32,9 +32,7 @@ function App() {
     setShowResetModal(false);
   };
 
-  useEffect(() => {
-  localStorage.setItem("darkMode", JSON.stringify(darkMode));
-}, [darkMode]);
+  
 
   const theme = darkMode ? "light" : "dark";
 
@@ -112,7 +110,7 @@ function App() {
       )}
       {/* Main content */}
       <Routes>
-        <Route path="/my-resume" element={<Navigate to="/home" replace />} />
+        <Route path="/" element={<Navigate to="/home" replace />} />
         <Route
           path="/home"
           element={
