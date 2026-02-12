@@ -43,7 +43,7 @@ const Home: React.FC<HomeProps> = ({ darkMode, setTotalCount }) => {
   ];
   const myInformation = {
     imagePath:
-      "https://avatars.githubusercontent.com/u/78349946?s=400&u=7fd2e42534069c8c32f8d3514184983ba6491e1b&v=4",
+      "https://github.com/csorn2544.png",
     name: "Chanisorn",
     surname: "Ueasomsaksakul",
     contact: [
