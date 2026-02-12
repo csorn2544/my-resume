@@ -52,23 +52,26 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
     ],
     objective:
       "I am passionate about taking on new challenges that allow me to continually enhance my skills and gain valuable practical experience. With a focus on efficiency and productivity, I am dedicated to making meaningful contributions that benefit both myself and the organization I work with. I am eager to tackle new projects and collaborate with a dynamic team to achieve shared goals.",
-    workExperiences: [
-      {
-        name: "Bangkok Bank",
-        position: "Programmer",
-        period: "Currently Working Here",
-      },
-      {
-        name: "Ananda Development Public Company Limited",
-        position: "IT Intern",
-        period: "Nov 2023 - March 2024",
-      },
-      {
-        name: "National Telecom Public Company Limited",
-        position: "Researcher Assistant Intern",
-        period: "April 2023 - June 2023",
-      },
-    ],
+      workExperiences: [
+        {
+          name: "Bangkok Bank",
+          position: "Programmer",
+          period: "Currently Working Here",
+          color: "linear-gradient(to right, #4A90E2, #007AFF)",
+        },
+        {
+          name: "Ananda Development Public Company Limited",
+          position: "IT Intern",
+          period: "Nov 2023 - March 2024",
+          color: "black",
+        },
+        {
+          name: "National Telecom Public Company Limited",
+          position: "Researcher Assistant Intern",
+          period: "April 2023 - June 2023",
+          color: "black",
+        },
+      ],
   };
 
   const handleClick = (
@@ -193,8 +196,20 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
             {myInformation.workExperiences.map((job, index) => (
               <div key={index} className="job-details">
                 <p className="job-name">{job.name}</p>
-                <p className="job-position">Position: {job.position}</p>
-                <p className="job-period">{job.period}</p>
+                <p className="job-position">
+                  Position:{" "}
+                  <span style={{ fontWeight: "bold" }}>{job.position}</span>
+                </p>
+                <p
+                  className="job-period"
+                  style={{
+                    background: job.color,
+                    WebkitBackgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  {job.period}
+                </p>
               </div>
             ))}
           </div>
