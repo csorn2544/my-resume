@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-
+      
 jobs:
   build:
     name: Build
@@ -21,9 +21,6 @@ jobs:
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
-
-      - name: Print image link
-        run: echo VITE_IMG_LINK="${{ secrets.VITE_IMG_LINK }}" > .env
 
       - name: Build project
         run: npm run build
