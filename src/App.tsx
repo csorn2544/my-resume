@@ -29,8 +29,7 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
   const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
 
   const myInformation = {
-    imagePath:
-      "https://raw.githubusercontent.com/csorn2544/my-resume/main/src/assets/images/%E0%B9%84%E0%B8%9F%E0%B8%A5%E0%B9%8C%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B8%99%E0%B8%B4%E0%B8%AA%E0%B8%B4%E0%B8%95.jpg",
+    imagePath: import.meta.env.VITE_IMG_LINK,
     name: "Chanisorn",
     surname: "Ueasomsaksakul",
     contact: [
@@ -52,30 +51,30 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
     ],
     objective:
       "I am passionate about taking on new challenges that allow me to continually enhance my skills and gain valuable practical experience. With a focus on efficiency and productivity, I am dedicated to making meaningful contributions that benefit both myself and the organization I work with. I am eager to tackle new projects and collaborate with a dynamic team to achieve shared goals.",
-      workExperiences: [
-        {
-          name: "Bangkok Bank",
-          position: "Programmer",
-          period: "Currently Working Here",
-          color: "linear-gradient(to right, #4A90E2, #007AFF)",
-        },
-        {
-          name: "Ananda Development Public Company Limited",
-          position: "IT Intern",
-          period: "Nov 2023 - March 2024",
-          color: "black",
-        },
-        {
-          name: "National Telecom Public Company Limited",
-          position: "Researcher Assistant Intern",
-          period: "April 2023 - June 2023",
-          color: "black",
-        },
-      ],
+    workExperiences: [
+      {
+        name: "Bangkok Bank",
+        position: "Programmer",
+        period: "Currently Working Here",
+        color: "linear-gradient(to right, #2563eb, #1e40af)",
+      },
+      {
+        name: "Ananda Development Public Company Limited",
+        position: "IT Intern",
+        period: "Nov 2023 - March 2024",
+        color: "black",
+      },
+      {
+        name: "National Telecom Public Company Limited",
+        position: "Researcher Assistant Intern",
+        period: "April 2023 - June 2023",
+        color: "black",
+      },
+    ],
   };
 
   const handleClick = (
-    event: React.MouseEvent<HTMLImageElement, MouseEvent>
+    event: React.MouseEvent<HTMLImageElement, MouseEvent>,
   ) => {
     const { clientX, clientY } = event;
     const id = nextId;
@@ -105,7 +104,7 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
   };
 
   const handleMouseDown = (
-    event: React.MouseEvent<HTMLHeadingElement, MouseEvent>
+    event: React.MouseEvent<HTMLHeadingElement, MouseEvent>,
   ) => {
     setIsDragging(true);
     const { clientX, clientY } = event;
@@ -171,8 +170,8 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
         <div className="image-container">
           <img
             src={myInformation.imagePath}
-            alt="Student"
-            className={`student-image ${isHovered ? "hovered" : ""}`}
+            alt="Profile Image"
+            className={`profile-image ${isHovered ? "hovered" : ""}`}
             onClick={handleClick}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -194,7 +193,15 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
           <h1 className="header2">Work Experiences</h1>
           <div className="work-experience-list">
             {myInformation.workExperiences.map((job, index) => (
-              <div key={index} className="job-details">
+              <div
+                key={index}
+                className="job-details"
+                style={
+                  {
+                    "--job-color": job.color,
+                  } as React.CSSProperties
+                }
+              >
                 <p className="job-name">{job.name}</p>
                 <p className="job-position">
                   Position:{" "}
