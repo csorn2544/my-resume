@@ -195,24 +195,175 @@
 }
 
 @media (max-width: 768px) {
+  .home {
+    padding: 10px 8px 80px 8px;
+    width: 100%;
+  }
+
   .container1 {
-    width: 95%;
+    width: 100%;
     max-width: none;
+    margin: 10px 0;
+    padding: 16px 12px;
+    border-radius: 14px;
   }
 
   .container2 {
     width: 100%;
     max-width: none;
+    margin: 8px 0;
+    padding: 20px 14px;
+    border-radius: 14px;
   }
 
   .profile-image {
-    width: 180px;
-    height: 180px;
+    width: 130px;
+    height: 130px;
+    margin-top: 6px;
+  }
+
+  .header1,
+  .header2 {
+    font-size: 1.35em;
+    text-align: center;
+  }
+
+  .objective-text {
+    font-size: 14px;
+    line-height: 1.5;
   }
 
   .row1 {
     flex-direction: column;
     align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .row2 {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .contact-buttons {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+    align-items: stretch;
+  }
+
+  .contact-button {
+    width: 100%;
+    text-align: center;
+    font-size: 0.95em;
+    padding: 10px 8px;
+  }
+
+  .contact-icon {
+    font-size: 16px;
+    margin-right: 6px;
+  }
+
+  .work-experience-list {
+    padding-top: 14px;
+    padding-left: 14px;
+  }
+
+  .job-details {
+    padding-left: 28px;
+    margin-bottom: 16px;
+  }
+
+  .job-details:before {
+    width: 16px;
+    height: 16px;
+    left: -9px;
+  }
+
+  .job-name {
+    font-size: 0.95em;
+  }
+
+  .job-position,
+  .job-period {
+    font-size: 0.85em;
+  }
+
+  .top-right-controls {
+    top: 10px;
+    right: 8px;
+    padding: 10px 8px;
+    gap: 12px;
+    border-radius: 12px;
+  }
+
+  .top-right-controls button {
+    padding: 8px;
+    font-size: 1.25rem;
+  }
+
+  .count-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 0.95rem;
+  }
+
+  .footer {
+    padding: 4px 0;
+  }
+
+  .footer p {
+    font-size: 12px;
+  }
+
+  .footer .tech-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .side-navbar {
+    width: 85vw;
+    max-width: 300px;
+    padding: 24px 16px;
+  }
+
+  .navbar-links-vertical {
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .nav-link {
+    font-size: 1em;
+    padding: 10px 14px;
+  }
+
+  .close-navbar {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  .modal-content {
+    width: 90vw;
+    max-width: 300px;
+    padding: 18px 14px;
+  }
+
+  .modal p {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .modal-buttons button {
+    padding: 8px 16px;
+    font-size: 14px;
+    margin: 0 6px;
   }
 }
 
