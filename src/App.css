@@ -111,17 +111,49 @@
 }
 
 /*Image Section*/
-.profile-image {
-  margin-top: 10px;
+.pfp-wrapper {
+  position: relative;
+  overflow: hidden;
   width: 220px;
   height: 220px;
+  margin-top: 10px;
+  border-radius: 50%;
+}
+
+.pfp-skeleton {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: pfpPulse 1.5s infinite linear;
+}
+
+@keyframes pfpPulse {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 50% ;
+  opacity: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition:
+    opacity 0.5s ease-in-out,
     transform 0.3s ease,
     box-shadow 0.3s ease;
   cursor: pointer;
+}
+
+.profile-image.loaded {
+  opacity: 1;
 }
 
 .profile-image.hovered {
@@ -188,7 +220,7 @@
     width: 80%;
     max-width: 300px;
   }
-  .profile-image {
+  .pfp-wrapper {
     width: 250px;
     height: 250px;
   }
@@ -216,7 +248,7 @@
     border-radius: 14px;
   }
 
-  .profile-image {
+  .pfp-wrapper {
     width: 130px;
     height: 130px;
     margin-top: 6px;
@@ -520,6 +552,23 @@
   border-radius: 50%;
   background: var(--job-color, grey);
   border: 2px solid #fff;
+}
+
+.job-timeline-logo {
+  position: absolute;
+  left: -16px;
+  top: -2px;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.job-details.has-logo::before {
+  display: none;
 }
 
 .job-name {

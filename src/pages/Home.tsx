@@ -15,11 +15,20 @@ interface HomeProps {
   handleResetCancel: () => void;
 }
 
+interface WorkExperience {
+  name: string;
+  position: string;
+  period: string;
+  color?: string;
+  logo?: string;
+}
+
 const Home: React.FC<HomeProps> = ({ darkMode, setTotalCount }) => {
   const theme = darkMode ? "light" : "dark";
   const [isHovered, setIsHovered] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
+  const [imgLoaded, setImgLoaded] = useState(false);
   const [plusOneList, setPlusOneList] = useState<
     {
       emoji: ReactNode;
@@ -71,18 +80,21 @@ const Home: React.FC<HomeProps> = ({ darkMode, setTotalCount }) => {
         position: "Programmer",
         period: "Currently Working Here",
         color: "linear-gradient(to right, #2563eb, #1e40af)",
+        logo: "",
       },
       {
         name: "Ananda Development Public Company Limited",
         position: "IT Intern",
         period: "Nov 2023 - March 2024",
+        logo: "",
       },
       {
         name: "National Telecom Public Company Limited",
         position: "Researcher Assistant Intern",
         period: "April 2023 - June 2023",
+        logo: "",
       },
-    ],
+    ] satisfies WorkExperience[],
   };
 
   // handleResetConfirm and handleResetCancel are now props
@@ -177,15 +189,21 @@ const Home: React.FC<HomeProps> = ({ darkMode, setTotalCount }) => {
           </div>
         </div>
         <div className="image-container">
-          <img
-            src={myInformation.imagePath}
-            alt="Profile Image"
-            className={`profile-image ${isHovered ? "hovered" : ""}`}
-            onClick={handleClick}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            draggable="false"
-          />
+          <div className="pfp-wrapper">
+            {!imgLoaded && <div className="pfp-skeleton" />}
+            <img
+              src={myInformation.imagePath}
+              alt="Profile Image"
+              className={`profile-image ${isHovered ? "hovered" : ""} ${
+                imgLoaded ? "loaded" : ""
+              }`}
+              onClick={handleClick}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              onLoad={() => setImgLoaded(true)}
+              draggable="false"
+            />
+          </div>
           {plusOneList.map((plusOne) => (
             <div
               key={plusOne.id}
@@ -204,13 +222,20 @@ const Home: React.FC<HomeProps> = ({ darkMode, setTotalCount }) => {
             {myInformation.workExperiences.map((job, index) => (
               <div
                 key={index}
-                className="job-details"
+                className={`job-details ${job.logo ? "has-logo" : ""}`}
                 style={
                   {
-                    "--job-color": job.color,
+                    "--job-color": job.color || "grey",
                   } as React.CSSProperties
                 }
               >
+                {job.logo ? (
+                  <img
+                    src={job.logo}
+                    alt={`${job.name} logo`}
+                    className="job-timeline-logo"
+                  />
+                ) : null}
                 <p className="job-name">{job.name}</p>
                 <p className="job-position">
                   Position:{" "}
@@ -219,7 +244,7 @@ const Home: React.FC<HomeProps> = ({ darkMode, setTotalCount }) => {
                 <p
                   className="job-period"
                   style={{
-                    background: job.color,
+                    background: job.color || "grey",
                     WebkitBackgroundClip: "text",
                     color: "transparent",
                   }}
